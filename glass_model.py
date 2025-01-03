@@ -10,9 +10,11 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, class
 import matplotlib.pyplot as plt
 import seaborn as sns
 import mlflow.sklearn
+import dagshub
+dagshub.init(repo_owner='abhishek7260', repo_name='mlflow-dagsup', mlflow=True)
 
 mlflow.set_experiment("glass_model_gb")
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("https://dagshub.com/abhishek7260/mlflow-dagsup.mlflow")
 # Load the dataset
 df = pd.read_csv("E:\\glass_prediction_mlflow\\data\\glass.csv")
 df.head()
