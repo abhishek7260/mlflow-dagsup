@@ -1,0 +1,13 @@
+digest: 9e522591
+name: dataset
+profile: '{"num_rows": 37, "num_elements": 370}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "RI", "required": true}, {"type":
+  "double", "name": "Na", "required": true}, {"type": "double", "name": "Mg", "required":
+  true}, {"type": "double", "name": "Al", "required": true}, {"type": "double", "name":
+  "Si", "required": true}, {"type": "double", "name": "K", "required": true}, {"type":
+  "double", "name": "Ca", "required": true}, {"type": "double", "name": "Ba", "required":
+  true}, {"type": "double", "name": "Fe", "required": true}, {"type": "long", "name":
+  "Type", "required": true}]}'
+source: '{"tags": {"mlflow.user": "Abhishek", "mlflow.source.name": "glass_model.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "af82c36eafce22d6ac6280ad4720213a4c57e89f"}}'
+source_type: code

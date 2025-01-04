@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/mlflow-dagsup/mlruns/230549078009477017/5fcac71777e840d598a97139efe2883f/artifacts
+end_time: 1735963346559
+entry_point_name: ''
+experiment_id: '230549078009477017'
+lifecycle_stage: active
+run_id: 5fcac71777e840d598a97139efe2883f
+run_name: rumbling-gull-356
+run_uuid: 5fcac71777e840d598a97139efe2883f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735963335320
+status: 3
+tags: []
+user_id: Abhishek

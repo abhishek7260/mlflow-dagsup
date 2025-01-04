@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/mlflow-dagsup/mlruns/230549078009477017/1897a6e9c18d4f0997e1690b6123e425/artifacts
+end_time: 1735963373697
+entry_point_name: ''
+experiment_id: '230549078009477017'
+lifecycle_stage: active
+run_id: 1897a6e9c18d4f0997e1690b6123e425
+run_name: judicious-deer-533
+run_uuid: 1897a6e9c18d4f0997e1690b6123e425
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735963363487
+status: 3
+tags: []
+user_id: Abhishek

@@ -11,10 +11,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import mlflow.sklearn
 import dagshub
-dagshub.init(repo_owner='abhishek7260', repo_name='mlflow-dagsup', mlflow=True)
+# dagshub.init(repo_owner='abhishek7260', repo_name='mlflow-dagsup', mlflow=True)
 
 mlflow.set_experiment("glass_model_gb")
-mlflow.set_tracking_uri("https://dagshub.com/abhishek7260/mlflow-dagsup.mlflow")
+# mlflow.set_tracking_uri("https://dagshub.com/abhishek7260/mlflow-dagsup.mlflow")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
 # Load the dataset
 df = pd.read_csv("E:\\glass_prediction_mlflow\\data\\glass.csv")
 df.head()
@@ -48,19 +49,25 @@ def remove_outlier_with_zscore(df, columns=None, threshold=3):
     return df 
 
 # Remove outliers
-processed_df = remove_outlier_with_zscore(df)
+# processed_df = remove_outlier_with_zscore(df)
 
 # Split data into features (X) and target (y)
-x = processed_df.drop('Type', axis=1)
-y = processed_df['Type']
+# x = processed_df.drop('Type', axis=1)
+# y = processed_df['Type']
 
 # Train-test split
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+train_data,test_data = train_test_split(df, test_size=0.2, random_state=42)
 
+train_processed=remove_outlier_with_zscore(train_data)
+test_processed=remove_outlier_with_zscore(test_data)
+x_train=train_processed.drop('Type',axis=1)
+y_train=train_processed['Type']
+x_test=test_processed.drop('Type',axis=1)
+y_test=test_processed['Type']
 # Hyperparameter for Gradient Boosting
-learning_rate = 0.1
-n_estimators = 500
-max_depth = 3
+learning_rate = 0.01
+n_estimators = 600
+max_depth = 4
 
 # Training with MLflow logging
 with mlflow.start_run():
@@ -74,6 +81,9 @@ with mlflow.start_run():
     # Load the model and make predictions
     model = pickle.load(open("gradient_boosting_model.pkl", "rb"))
     y_pred = model.predict(x_test)
+    
+    train_df=mlflow.data.from_pandas(train_processed)
+    test_df=mlflow.data.from_pandas(test_processed)
     
     # Evaluate metrics
     accuracy = accuracy_score(y_test, y_pred)
@@ -96,6 +106,10 @@ with mlflow.start_run():
     mlflow.log_param("n_estimators", n_estimators)
     mlflow.log_param("max_depth", max_depth)
     mlflow.log_artifact(__file__)
+    
+    
+    mlflow.log_input(train_df,"train")
+    mlflow.log_input(test_df,"test")
     
     # Optional: Print classification report
     print("Classification Report:\n", classification_report(y_test, y_pred))
